@@ -1,0 +1,26 @@
+{{define "base"}}
+
+<!doctype html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <link href="/static/css/main.css" rel="stylesheet">
+  <link href="/static/img/favicon.ico" rel="shortcut icon">
+  <title>{{template "title" .}}</title>
+</head>
+
+<body>
+  <header>
+    <h1><a href='/'>Snippetbox</a></h1>
+  </header>
+  <nav> <a href="/">Home</a> </nav>
+  <section>
+    {{template "body" .}}
+  </section>
+  {{ template "footer" .}}
+  <script src="/static/js/main.js"></script>
+</body>
+
+</html>
+{{end}}
