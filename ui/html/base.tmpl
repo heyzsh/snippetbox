@@ -7,16 +7,16 @@
   <meta charset='utf-8'>
   <link href="/static/css/main.css" rel="stylesheet">
   <link href="/static/img/favicon.ico" rel="shortcut icon">
-  <title>{{template "title" .}}</title>
+  <title>{{template "title" .}} - Snippetbox</title>
 </head>
 
 <body>
   <header>
     <h1><a href='/'>Snippetbox</a></h1>
   </header>
-  <nav> <a href="/">Home</a> </nav>
+  {{template "nav" .}}
   <section>
-    {{template "body" .}}
+    {{template "main" .}}
   </section>
   {{ template "footer" .}}
   <script src="/static/js/main.js"></script>

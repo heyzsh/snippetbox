@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	_ "github.com/go-sql-driver/mysql"
 	"haidarz.com/internal/models"
 )
 
@@ -18,7 +19,7 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":4000", "Hostname in host:port format")
-	dsn := flag.String("dsn", "test:test@/dbname?parseTime=true", "Database connection string")
+	dsn := flag.String("dsn", os.Getenv("DB_DSN"), "Database connection string")
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "[INFO]\t", log.Ldate|log.Ltime)
