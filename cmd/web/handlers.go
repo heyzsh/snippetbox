@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -41,10 +42,17 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	app.render(w, http.StatusOK, "view.tmpl", data)
 }
 
-func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
+// Renders the snippet form
+func (app *application) showSnippetCreate(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Under construction..."))
 }
 
-func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request) {
-
+// Creates a snippet from form data
+func (app *application) doSnippetCreate(w http.ResponseWriter, r *http.Request) {
+	id, err := app.snippets.Insert("Title", "Content", 7)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	http.Redirect(w, r, fmt.Sprintf("/snippet/%d", id), http.StatusSeeOther)
 }
