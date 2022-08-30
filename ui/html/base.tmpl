@@ -15,12 +15,12 @@
     <h1><a href='/'>Snippetbox</a></h1>
   </header>
   {{template "nav" .}}
-  <section>
+  <main>
     {{with .Flash}}
       <div class='flash'>{{.}}</div>
     {{end}}
     {{template "main" .}}
-  </section>
+  </main>
   {{ template "footer" .}}
   <script src="/static/js/main.js"></script>
 </body>
