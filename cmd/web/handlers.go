@@ -197,4 +197,13 @@ func (app *application) doLogin(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
 }
 
-func (app *application) doSignout(w http.ResponseWriter, r *http.Request) {}
+func (app *application) doSignout(w http.ResponseWriter, r *http.Request) {
+	err := app.sessionManager.RenewToken(r.Context())
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	app.sessionManager.Remove(r.Context(), "authenticatedUserID")
+	app.sessionManager.Put(r.Context(), "flash", "Logged out successfully")
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
