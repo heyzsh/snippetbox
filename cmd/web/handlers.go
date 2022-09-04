@@ -207,3 +207,7 @@ func (app *application) doSignout(w http.ResponseWriter, r *http.Request) {
 	app.sessionManager.Put(r.Context(), "flash", "Logged out successfully")
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func ping(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("OK"))
+}
